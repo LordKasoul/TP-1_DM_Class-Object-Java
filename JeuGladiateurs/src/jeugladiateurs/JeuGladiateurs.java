@@ -3,6 +3,7 @@ package jeugladiateurs;
 import personnages.Personnage;
 import combat.CompteurDeTour;
 import combat.AffichageEcran;
+import java.util.HashSet;
 
 public class JeuGladiateurs {
 
@@ -34,7 +35,26 @@ public class JeuGladiateurs {
     // **************************************************************************
     // <editor-fold defaultstate="collapsed" desc="Mécanique de combat">
     // TODO : La boucle contenant les étapes du combat
+    do {
+        tour.afficheTour();
+        for(int i=0; i<100; i++){
+            if (Bob.getInitiative() == i){
+               Bob.frapperPersonnage(Igor);
+            }
+            else if (Igor.getInitiative() == i){
+                Igor.frapperPersonnage(Bob);
+            }
+        }
+            affichage.afficherSeparateurInfosPerso();
+            Bob.afficherInfosPersonnage();
+            Igor.afficherInfosPersonnage();
+            Bob.setNewInitiativeRandom();
+            Igor.setNewInitiativeRandom();
+            tour.augmenteTour();
+            affichage.afficherSeparateurDeTour();
+    }while(Bob.getPointsDeVie()>0 && Igor.getPointsDeVie()>0 && tour.getCptrTour()<40); // Si une de ces 3 conditions n'est pas respecté la boucle s'arrete
     // TODO : Après la boucle, afficher le résultat du combat
+    affichage.afficheVictoire(Bob, Igor);
     // </editor-fold>
     }
 
