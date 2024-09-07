@@ -12,9 +12,7 @@ public class AffichageEcran {
         // TODO : Afficher le message du début du combat, tel que montré dans l'énoncé
         System.out.println("\n<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>");
         System.out.println(">>>>> Que le combat commence! <<<<<<");
-        System.out.println("<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>");
-
-
+        System.out.println("<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>\n");
     }
     
     public void afficherSeparateurDeTour() {
