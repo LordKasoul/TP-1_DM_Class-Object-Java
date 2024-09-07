@@ -101,9 +101,8 @@ public class Personnage {
     }
 
     private int attaqueCalcul() {
-        // TODO : Retourner la valeur de l'attaque du personnage.
-        // Cette valeur est trouvée aléatoirement et doit se situer entre ZÉRO et valeurMaxAttaque.
-        return 0;
+        int valeurAttaque = (int)(Math.random()*this.valeurMaxAttaque);// Fonction qui renvoie une valeur double donc on convertie ce qu'elle sort en entier. 
+        return valeurAttaque;
     }
 
     public void frapperPersonnage(Personnage personnageCible) {
