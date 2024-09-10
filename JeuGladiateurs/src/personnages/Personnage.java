@@ -66,7 +66,12 @@ public class Personnage {
     }
     
     public void setPointsDeVie(int pointsDeVie) {
+        if (pointsDeVie >= 0){
         this.pointsDeVie = pointsDeVie;
+        }
+        else{
+            this.pointsDeVie = 0;
+        }
     }
     
     public void setValeurMaxAttaque(int valeurMaxAttaque) {
@@ -84,11 +89,11 @@ public class Personnage {
     // **************************************************************************
     // **************************************************************************
     // **************************************************************************
-    // <editor-fold defaultstate="collapsed" desc="MÃ©canique de jeu">
+    // <editor-fold defaultstate="collapsed" desc="Mécanique de jeu">
     public void afficherInfosPersonnage() {
         System.out.println("\n"+this.nom);
         System.out.println("\tAttaque : " + this.valeurMaxAttaque);
-        System.out.println("\tDÃ©fense : " + this.valeurDefense);
+        System.out.println("\tDefense : " + this.valeurDefense);
         System.out.println("\tPoints de vie : " + this.pointsDeVie);
         System.out.println("\tInitiative : " + this.initiative);
         if (this.pointsDeVie <= 0 )
@@ -106,27 +111,23 @@ public class Personnage {
     }
 
     public void frapperPersonnage(Personnage personnageCible) {
-        // TODO : RÃ©cupÃ©rer la valeur d'attaque pour ce tour, calculer les dÃ©gats,
+        // TODO : Récupérer la valeur d'attaque pour ce tour, calculer les dégats,
         int valeurAttaque = this.attaqueCalcul();
         int dommage = valeurAttaque - personnageCible.valeurDefense;
-        if (dommage > 0){
-            personnageCible.pointsDeVie = personnageCible.pointsDeVie - dommage;
-            if(personnageCible.pointsDeVie >= 0){
-                System.out.println("\n"+this.nom+" attaque avec une puissance de : "+ valeurAttaque);
-                System.out.println(personnageCible.nom + " a une defense de : " + personnageCible.valeurDefense);
-                if (dommage>= 0){
-                    System.out.println("Les dommages sont donc de : "+dommage);
-                }
-                else{
-                    System.out.println("Les dommages sont donc de : 0");
-                }
-            }
+        if (dommage < 0){
+            dommage = 0;
+        }
+        if(personnageCible.pointsDeVie > 0){
+            personnageCible.setPointsDeVie(personnageCible.pointsDeVie - dommage);
+            System.out.println("\n"+this.nom+" attaque avec une puissance de : "+ valeurAttaque);
+            System.out.println(personnageCible.nom + " a une defense de : " + personnageCible.valeurDefense);
+            System.out.println("Les dommages sont donc de : "+dommage);
         }
         
     }
 
     public void setNewInitiativeRandom() {
-        // TODO : Modifier de faÃ§on alÃ©atoire la valeur INI du personnage.
+        // TODO : Modifier de façon aléatoire la valeur INI du personnage.
         setInitiative((int)(Math.random()*100));
     }
     // </editor-fold>

@@ -4,6 +4,7 @@ import personnages.Personnage;
 import combat.CompteurDeTour;
 import combat.AffichageEcran;
 import java.util.HashSet;
+import personnages.Mirmillon;
 
 public class JeuGladiateurs {
 
@@ -15,7 +16,7 @@ public class JeuGladiateurs {
     // <editor-fold defaultstate="expanded" desc="Instanciation des objets">
     CompteurDeTour tour = new CompteurDeTour();
     AffichageEcran affichage = new AffichageEcran();
-    Personnage Bob = new Personnage("Bob le malchanceux", 15,15,70,15);
+    Personnage Bob = new Mirmillon("Bob le malchanceux", 15,15,70,15);
     Personnage Igor = new Personnage("Igor l'empaleur",25,5,100,30);
     // </editor-fold>
 
@@ -41,7 +42,7 @@ public class JeuGladiateurs {
             if (Bob.getInitiative() == i){
                Bob.frapperPersonnage(Igor);
             }
-            else if (Igor.getInitiative() == i){
+            else if (Igor.getInitiative() == i && Igor.getPointsDeVie()>0){
                 Igor.frapperPersonnage(Bob);
             }
         }
